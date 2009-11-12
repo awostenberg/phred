@@ -1,0 +1,22 @@
+
+howtos
+11/10/09
+	wiki wiki.qualitysmith.com
+
+	rake test:units.question_groups
+
+	git diff HEAD~1
+
+11/11/09
+	rake test:unit:rcov
+	then browse	file://home/alan/projects/qs_frontend/coverage/units/index.html
+
+	ssh agent to not type passwords to git
+	    ssh-agent
+	    ssh-add
+	    
+	    then your "git remote show origin" won't prompt
+	synch from changes in shared db to dev db
+	    rm db/ ...
+	    rake db:migrate
+	    cp ../shared/db/developmoent.sqlite3 db/shared/	
