@@ -9,44 +9,44 @@ class Note	#I am just a storage place for a note name, and I know what color rep
 		@sample = Gosu::Sample.new(@window, "sounds/" + @note_name.to_s + ".wav")
 		@colors = Array.new
 		
-		$red = [:A4, Gosu::Color.rgb(255, 0, 0), 1]				#the 1st object (position 0) is the note name. the 2nd (position 1) is the note color. the 3rd (pos. 2) and final object represents the slot position for that note. this goes for all color arrays
+		$black = [:rest, Gosu::Color.rgb(0, 0, 0), 2]			#the 1st object (position 0) is the note name. the 2nd (position 1) is the note color. the 3rd (pos. 2) and final object represents the slot position for that note. this goes for all color arrays
+		@colors << $black
+		
+		$red = [:A4, Gosu::Color.rgb(255, 0, 0), 4]
 		@colors << $red
 		
-		$light_red = [:As4, Gosu::Color.rgb(255, 0, 127), 2]
+		$light_red = [:As4, Gosu::Color.rgb(255, 0, 127), 5]
 		@colors << $light_red
 		
-		$orange = [:B4, Gosu::Color.rgb(255, 127, 0), 3]
+		$orange = [:B4, Gosu::Color.rgb(255, 127, 0), 6]
 		@colors << $orange
 		
-		$yellow = [:C4, Gosu::Color.rgb(255, 255, 0), 4]
+		$yellow = [:C4, Gosu::Color.rgb(255, 255, 0), 7]
 		@colors << $yellow
 		
-		$yellow_green = [:Cs4, Gosu::Color.rgb(127, 255, 0), 5]
+		$yellow_green = [:Cs4, Gosu::Color.rgb(127, 255, 0), 8]
 		@colors << $yellow_green
 		
-		$green = [:D4, Gosu::Color.rgb(0, 255, 0), 6]
+		$green = [:D4, Gosu::Color.rgb(0, 255, 0), 9]
 		@colors << $green
 		
-		$blue_green = [:Ds4, Gosu::Color.rgb(0, 255, 127), 7]
+		$blue_green = [:Ds4, Gosu::Color.rgb(0, 255, 127), 10]
 		@colors << $blue_green
 		
-		$cyan = [:E4, Gosu::Color.rgb(0, 255, 255), 8]
+		$cyan = [:E4, Gosu::Color.rgb(0, 255, 255), 11]
 		@colors << $cyan
 		
-		$light_blue = [:F4, Gosu::Color.rgb(0, 196, 255), 9]
+		$light_blue = [:F4, Gosu::Color.rgb(0, 196, 255), 12]
 		@colors << $light_blue
 		
-		$blue = [:Fs4, Gosu::Color.rgb(0, 0, 255), 10]
+		$blue = [:Fs4, Gosu::Color.rgb(0, 0, 255), 13]
 		@colors << $blue
 		
-		$purple = [:G4, Gosu::Color.rgb(127, 0, 255), 11]
+		$purple = [:G4, Gosu::Color.rgb(127, 0, 255), 14]
 		@colors << $purple
 		
-		$pink = [:Gs4, Gosu::Color.rgb(255, 127, 255), 12]
+		$pink = [:Gs4, Gosu::Color.rgb(255, 127, 255), 15]
 		@colors << $pink
-		
-		$black = [:rest, Gosu::Color.rgb(0, 0, 0), 14]
-		@colors << $black
 		
 	end
 	

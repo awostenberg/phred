@@ -13,7 +13,8 @@ class Whirlygig
 		@theta = 0
 		@speed = 0
 		
-		@color = Gosu::Color.rgba(255, 0, 0, 255)
+		@hue = rand(255)
+		@color = Gosu::Color.from_hsv(@hue, 50, 100)
 		@lines = Array.new
 		
 		if @size == '1'
@@ -38,8 +39,10 @@ class Whirlygig
 	end
 	
 	def update
-		set_pos
+		@hue = @hue + 1
+		@color = Gosu::Color.from_hsv(@hue, 0.5, 0.5)
 		
+		set_pos
 		if @size == '3'
 			@lines << Line.new(@old_x, @old_y, @color, @x, @y, @color, @window)
 		end
@@ -101,6 +104,7 @@ class Whirlygig
 	end
 	
 	def reset
+		@hue = rand(255)
 		@lines = Array.new
 		@theta = 0
 	end

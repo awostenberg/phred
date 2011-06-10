@@ -16,7 +16,7 @@ class GameWindow < Gosu::Window
 		@tiles = Array.new
 		@pallette = Pallette.new(self)
 		@bkg_color = Gosu::Color.rgb(255, 255, 255)
-		@slots = 15																#set the number of "slots" in the pallette
+		@slots = 16																#set the number of "slots" in the pallette
 		@playing = false
 		@interval = 10
 		
