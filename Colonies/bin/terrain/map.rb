@@ -6,18 +6,20 @@ module Colonies
 			@window = window
 			@camera = camera
 			@tiles = Array.new
-			initialize_tiles
+			generate_map(625)
 		end
 		
-		def initialize_tiles
-			@tiles << Tile.new(@window, 'dirt', -120, 80)
-			@tiles << Tile.new(@window, 'dirt', -40, -40)
-			@tiles << Tile.new(@window, 'dirt', 0, -40)
-			@tiles << Tile.new(@window, 'dirt', -40, 0)
-			@tiles << Tile.new(@window, 'dirt', 0, 0)
-			@tiles << Tile.new(@window, 'dirt', 40, 0)
-			@tiles << Tile.new(@window, 'dirt', 0, 40)
-			@tiles << Tile.new(@window, 'dirt', 80, 80)
+		def generate_map(tiles)
+			$nsqrt = (Math.sqrt(tiles)).to_i
+			tiles.times do |i|
+				$x = i % $nsqrt
+				$y = i / $nsqrt
+				if (Gosu::random(1, 101) < 99)
+					@tiles << Tile.new(@window, 'dirt', $x, $y)
+				else
+					@tiles <<Tile.new(@window, 'rock', $x, $y)
+				end
+			end
 		end
 		
 		def update

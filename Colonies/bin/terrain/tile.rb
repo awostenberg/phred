@@ -18,7 +18,7 @@ module Colonies
 		end
 		
 		def draw
-			@image.draw(@x + @x_offset, @y + @y_offset, 1)
+			@image.draw((@x * @image.width) + @x_offset, (@y * @image.height) + @y_offset, 1)
 		end
 		
 		def set_x_offset(new)

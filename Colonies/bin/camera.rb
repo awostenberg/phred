@@ -20,6 +20,10 @@ module Colonies
 			if button_down?(Gosu::KbRight)
 				@x += @scroll_speed
 			end
+			if button_down?(Gosu::KbSpace)
+				@x = 0
+				@y = 0
+			end
 		end
 		
 		def button_down?(id)
@@ -33,24 +37,5 @@ module Colonies
 		def y
 			@y
 		end
-		
-		#@@x = 0
-		#@@y = 0
-		
-		#def self.x
-		#	@@x
-		#end
-		
-		#def self.y
-		#	@@y
-		#end
-		
-		#def self.set_window(new_window)
-		#	@@window = new_window
-		#end
-		
-		#def self.button_down?(id)
-		#	@@window.button_down?(id)
-		#end
 	end
 end
