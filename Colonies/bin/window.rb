@@ -1,12 +1,12 @@
 require 'rubygems'
 require 'gosu'
 
-											#I couldn't get require_relative working, so I have to use this ugly code x_x
-require (File.dirname(__FILE__) + '/cursor.rb')
-require (File.dirname(__FILE__) + '/camera.rb')
-require (File.dirname(__FILE__) + '/terrain/tile.rb')
+											#I couldn't get require_relative working, so I have to use this ugly code
+require (File.dirname(__FILE__) + '/cursor')
+require (File.dirname(__FILE__) + '/camera')
 require (File.dirname(__FILE__) + '/terrain/map')
-
+require (File.dirname(__FILE__) + '/GUI/button')
+											#The game module
 module Colonies
 											#This should be the path in which all the images are contained
 	IMG_FOLDER = 'bin/media/images/'
@@ -19,7 +19,6 @@ module Colonies
 		
 		def initialize
 			super(1000, 1000, false)
-			self.caption = 'Colonies'
 											#This is where all the objects that have both a draw AND an update method are stored, otherwise they might get their own variable
 			@objects = Array.new
 											#Create a new cursor for this window. I don't need to add it to @objects here; it does that by itself
@@ -28,21 +27,19 @@ module Colonies
 			@camera = Camera.new(self)
 											#Create a new map for this window
 			@map = Map.new(self, @camera)
-			#Tile.new(self, 'grass', 0, 0)
-			#Tile.new(self, 'grass', 40, 0)
-			#Tile.new(self, 'grass', 0, 40)
-			#Tile.new(self, 'grass', 40, 40)
 		end
 		
 		def update
+											#Set the window title
+			self.caption = ('Colonies					FPS: ' + (Gosu::fps).to_s)
+											#Quit the game if escape key pressed
+			if button_down?(Gosu::KbEscape)
+				Process.exit
+			end
 											#It is assumed that each object in @objects has an update method		
 			@objects.each {|each| each.update}
 											#Note: none of the objects in the following array have a draw method. That is why they are not in @objects
 			[@camera, @map].each {|each| each.update}	
-			
-			#puts ('Camera x position: ' + (@camera.x).to_s)
-			#puts ('Camera y position: ' + (@camera.y).to_s)
-			#puts '----------'
 		end
 		
 		def draw
@@ -53,6 +50,14 @@ module Colonies
 		def add_obj(obj)
 											#This is called by objects that want to add themselves to @objects
 			@objects << obj
+		end
+		
+		def scroll_x
+			@camera.x
+		end
+		
+		def scroll_y
+			@camera.y
 		end
 	end
 end
