@@ -1,14 +1,14 @@
 require 'rubygems'
 require 'gosu'
 
-                        # Change to the appropriate directory
+                    # Change to the appropriate directory
 Dir.chdir(File.dirname(__FILE__))
 
                     # Now require can be used more easily
 require 'main_menu.rb'
-require 'ingredient.rb'
-require 'burger_ingredient.rb'
 require 'burger.rb'
+require 'factory.rb'
+require 'pause.rb'
 
 
 module RubyBurger
@@ -26,7 +26,6 @@ module RubyBurger
       super(1000, 1000, false)
       self.caption = 'RubyBurger by J. Wostenberg 2011'
                         # Set the background color
-      @bkg_color = Gosu::Color.rgb(0, 128, 255)
       @bkg_color1 = Gosu::Color.rgb(0, 255, 255)
       @bkg_color2 = Gosu::Color.rgb(0, 128, 255)
 
@@ -34,6 +33,7 @@ module RubyBurger
       @objects = Array.new
                     # The main menu
       @objects << MainMenu.new(self)
+      #@objects << Pause.new(self)
     end
 
     def update
@@ -58,22 +58,28 @@ module RubyBurger
                          # Delete the main menu
       delete_inst(MainMenu)
                          # Start the game
-      #@objects << BottomBun.new(self)
-      @objects << FallingIngredient.new(self, 'top_bun', 500, 0)
+      #@objects << FallingIngredient.new(self, 'top_bun', 500, 0)
 
       @objects << BurgerStack.new(self)
+      @objects << Factory.new(self)
     end
 
     def delete_inst(objclass)     # If anything in @objects is an instance of objclass, remove it
       @objects.each {|obj| @objects.delete(obj) if (obj.class == objclass)}
     end
 
-    def bottom_bun
+    def topIngredient
       burger_stack.top_ingredient
     end
 
     def add(ingredient)
       burger_stack.add(ingredient)
+    end
+
+    def deleteFallingIngredient(ingredient)
+      @objects.each {|obj| if obj.class == Factory
+                            obj.delete(ingredient)
+                           end}
     end
 
     def burger_stack

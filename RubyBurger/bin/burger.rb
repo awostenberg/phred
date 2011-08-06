@@ -13,6 +13,7 @@ module RubyBurger
     end
 
     def update
+      bottom_bun.update_y(@ingredients)
       @ingredients.each {|each| each.update}
     end
 
@@ -26,6 +27,11 @@ module RubyBurger
 
     def top_ingredient
       @ingredients.last
+    end
+
+    def bottom_bun
+                    # Should be the first item
+      @ingredients.first
     end
   end
 end
